@@ -1,7 +1,7 @@
-export default function Home() {
+export default async function LandingPage() {
   return (
-    <div>
-      <h1>Hello, World</h1>
+    <div style={{marginTop: "50px"}}>
+      <h1>Landing Page</h1>
     </div>
   )
-}
+};
