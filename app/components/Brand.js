@@ -13,7 +13,7 @@ const Brand = () => {
     return (
         <div className={styles["brand-container"]}>
             <h2 className={styles["brand-text"]} onClick={motivateTheMasses}>The JFT</h2>
-            {<TimedMessage opacity={displayMessage} message="Put in the WORK, don't let your dreams be dreams!" bgColor="black" textColor="white"/>}
+            <TimedMessage opacity={displayMessage} message="Put in the WORK, don't let your dreams be dreams!" bgColor="black" textColor="white"/>
         </div>
     )
 };
