@@ -1,0 +1,36 @@
+.row-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.landing-column1 {
+    height: 100%;
+    margin-top: 10px;
+    margin-right: 2px;
+    padding-left: 3px;
+    padding-right: 3px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    width: 50%;
+}
+
+.landing-column2 {
+    height: 100%;
+    margin-top: 10px;
+    margin-right: 2px;
+    padding-left: 3px;
+    padding-right: 3px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    width: 50%;
+    /* margin-top: 10px;
+    margin-left: 2px;
+    border: 2px solid black;
+    width: 50%; */
+}
+
+.landing-header3 {
+    margin: 0;
+}
