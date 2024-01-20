@@ -58,3 +58,10 @@
     text-transform: uppercase;
     box-shadow: 0px 0px 6px 6px rgba(255, 255, 255, .2); 
 }
+
+.anchor {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+}

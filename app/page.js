@@ -12,7 +12,7 @@ export default async function LandingPage() {
           <p className={styles["p-col1"]}>Count those calories and let Joshy keep track of them</p>
           <h2 className={styles["landing-header3-right"]}>Track your workouts</h2>
           <p className={styles["p-col2"]}>Make note of each set and each rep and Joshy will keep track of it all</p>
-          <button className={styles["landing-button"]}>Enter the JFT</button>
+          <button className={styles["landing-button"]}><a href="/home" className={styles["anchor"]}>Enter the JFT</a></button>
         </div>
       </div>
     </div>
