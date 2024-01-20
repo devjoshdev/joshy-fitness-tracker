@@ -4,6 +4,7 @@ import styles from "./styles/global.css";
 import { Quicksand } from "next/font/google";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./components/SessionProvider";
+import SignInSignOut from "./components/SignInSignOut";
 
 const quickSand = Quicksand({
   subsets: ["latin"]
@@ -21,6 +22,7 @@ export default async function RootLayout({ children }) {
         <SessionProvider session={session}>
         <Brand/>
         <NavBar/>
+        <SignInSignOut/>
         {children}
         </SessionProvider>
       </body>

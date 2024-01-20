@@ -1,0 +1,10 @@
+.sign-sign {
+    position: fixed;
+    top: 0;
+    margin-top: 2px;
+    right: 10px;
+    z-index: 1;
+    min-width: fit-content;
+    text-decoration: underline;
+    cursor: pointer;
+}
