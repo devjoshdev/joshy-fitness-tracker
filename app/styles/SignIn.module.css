@@ -1,0 +1,24 @@
+.sign-in-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    text-align: center;
+    margin-top: 15%;
+}
+
+.sign-in-flexa {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100vw;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.inline-header2-underline {
+    margin-left: 4px;
+    margin-right: 8px;
+    font-style: italic;
+}
