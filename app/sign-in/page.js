@@ -23,12 +23,9 @@ export default async function SignIn({params, searchParams}) {
             <p style={{fontSize: "20px", marginTop: "0%",}}>or</p>
             <div className={styles["sign-in-flexa"]}>
                 <h2 style={{marginBottom: "0px", marginTop: "0"}}>Click the Sign Out button in the</h2>
-                <h2 style={{marginLeft: "6px", marginRight: "8px", marginBottom: "0", marginTop: "0", whiteSpace: "nowrap",}}>top right</h2>
+                <h2 style={{marginLeft: "6px", marginRight: "8px", marginBottom: "0", marginTop: "0", whiteSpace: "nowrap", fontStyle: "italic",}}>top right</h2>
                 <h2 style={{marginBottom: "0", marginTop: "0",}}>to sign out!</h2>
             </div>
-            {/* <h2 style={{marginBottom: "0px",}}>You're already signed in amigo, use the nav bar <h2 className={styles["inline-header2-underline"]}>above</h2> to dive head first into the action!</h2>
-            <p style={{fontSize: "20px",}}>or</p>
-            <h2 style={{marginTop: "0px",}}>Click the Sign Out button in the <h2 className={styles["inline-header2-underline"]}>top right</h2> to sign out!</h2> */}
         </div>
     )
    }
