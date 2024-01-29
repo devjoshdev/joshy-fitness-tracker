@@ -10,7 +10,7 @@ const NavBar = () => {
                     <li className={styles["nav-li"]}><Link href="/home" className={styles.link} prefetch={false}>Home</Link></li>
                     <li className={styles["nav-li"]}><Link href="/foods" className={styles.link} prefetch={false}>Foods</Link></li>
                     <li className={styles["nav-li"]}><Link href="/workouts" className={styles.link} prefetch={false}>Workouts</Link></li>
-                    <li className={styles["nav-li"]}><Link href="/goals" className={styles.link} prefetch={false}>Goals</Link></li>
+                    <li className={styles["nav-li"]}><Link href="/info-goals" className={styles.link} prefetch={false}>Info/Goals</Link></li>
                 </ul>
         </div>
     )
