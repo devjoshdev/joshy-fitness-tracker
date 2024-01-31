@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import SignInComponent  from "../components/SignInComponent";
 import styles from "../styles/SignIn.module.css";
 export default async function SignIn({params, searchParams}) {
-    const callbackUrl = searchParams["callback"] !== "" ? searchParams["callback"] : "home";
+    const callbackUrl = searchParams["callback"] == null ? "home" : searchParams["callback"];
     console.log("callback url is '", callbackUrl, "'");
     const session = await getServerSession();
    if (session) {
