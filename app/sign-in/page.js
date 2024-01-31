@@ -5,13 +5,6 @@ export default async function SignIn({params, searchParams}) {
     const callbackUrl = searchParams["callback"] !== "" ? searchParams["callback"] : "home";
     console.log("callback url is '", callbackUrl, "'");
     const session = await getServerSession();
-    /*
-    TODO for this page:
-        1. Check for if the user is signed in
-        2. If so, display message saying you're already signed in and to use navbar to choose a page to go to
-        3. If not, display component (to be made) that takes in a callback and arguments for that callback if necessary and signs the user in and redirects to initial page
-        4. Chalk the formatting for the text if signed in
-    */ 
    if (session) {
     return (
         <div className={styles["sign-in-container"]}>
