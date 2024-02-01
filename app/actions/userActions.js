@@ -53,4 +53,28 @@ async function findUser(email) {
     }
 }
 
+async function updateWeight(id, newWeight) {
+
+}
+
+async function updateHeight(id, newHeight) {
+    
+}
+
+async function updateDOB(id, newDOB) {
+    
+}
+
+async function updateGender(id, newGender) {
+    
+}
+
+async function updateActivityLevel(id, newActivityLevel) {
+    
+}
+
+async function updateRate(id, newRate) {
+    
+}
+
 export { initializeUser, findUser };
