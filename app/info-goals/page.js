@@ -8,14 +8,19 @@ export default async function InfoGoals() {
         redirect("/sign-in?callback=info-goals");
     }
     console.log(session);
-    const registeredUser = await findUser(session.user.email);
+    let registeredUser = await findUser(session.user.email);
     if (registeredUser == null) {
-        const initialized = await initializeUser(session.user.email);
-        console.log(initialized);
+        registeredUser = await initializeUser(session.user.email);
+        if (registeredUser == null) {
+            return (
+                <div className={styles["goals-container"]}>
+                    <h1>There has been a grave error</h1>
+                    <p>Please try again after some time</p>
+                </div>
+            )
+        }
     }
-    else {
-        console.log("hey we have auth and we have the user registered");
-    }
+    console.log(registeredUser);
     return (
         <div className={styles["goals-container"]}>
             Yessir, hey {session.user.name}!

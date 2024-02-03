@@ -1,5 +1,8 @@
 "use server";
 import mysql from "mysql2";
+import { getServerSession } from "next-auth";
+
+const session = await getServerSession();
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -24,20 +27,35 @@ function getCurrentDate() {
 }
 
 async function initializeUser(email) {
+    if (!session) {
+        return null;
+    }
     console.log("init user email is", email);
     try {
         const [res] = await pool.query("INSERT INTO joshy_fitness_tracker_user (email, date_registered) VALUES (?, ?)", [email, getCurrentDate()]);
-        console.log(res.affectedRows === 1 ? "User successfully registered" : "User registration failed");
-        return res.affectedRows === 1;
+        if (res.affectedRows !== 1) {
+            return null;
+        }
+        const [rows, fields] = await pool.query("SELECT * FROM joshy_fitness_tracker_user WHERE email = ?", [email]);
+        if (rows.length > 0) {
+            console.log('User found:', rows[0]);
+            return rows[0];
+        } else {
+            console.log('No user found with the given email.');
+            return null;
+        }
     }
     catch (err) {
         console.log(err);
-        return false;
+        return null;
     }
 }
 
 async function findUser(email) {
     console.log("find user email is", email);
+    if (!session) {
+        return null;
+    }
     try {
         const [rows, fields] = await pool.query("SELECT * FROM joshy_fitness_tracker_user WHERE email = ?", [email]);
         if (rows.length > 0) {
@@ -54,27 +72,87 @@ async function findUser(email) {
 }
 
 async function updateWeight(id, newWeight) {
+    if (!session) {
+        return false;
+    }
+    try {
+        const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET weight = ? WHERE id = ?", [newWeight, id]);
+        return res.affectedRows === 1;
+    }
+    catch (err) {
+        return false;
+    }
 
 }
 
 async function updateHeight(id, newHeight) {
+        if (!session) {
+        return false;
+    }
+    try {
+        const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET height = ? WHERE id = ?", [newHeight, id]);
+        return res.affectedRows === 1;
+    }
+    catch (err) {
+        return false;
+    }
     
 }
 
 async function updateDOB(id, newDOB) {
+        if (!session) {
+        return false;
+    }
+    try {
+        const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET dob = ? WHERE id = ?", [newDOB, id]);
+        return res.affectedRows === 1;
+    }
+    catch (err) {
+        return false;
+    }
     
 }
 
 async function updateGender(id, newGender) {
+        if (!session) {
+        return false;
+    }
+    try {
+        const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET gender = ? WHERE id = ?", [newGender, id]);
+        return res.affectedRows === 1;
+    }
+    catch (err) {
+        return false;
+    }
     
 }
 
 async function updateActivityLevel(id, newActivityLevel) {
+        if (!session) {
+        return false;
+    }
+    try {
+        const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET activity_level = ? WHERE id = ?", [newActivityLevel, id]);
+        return res.affectedRows === 1;
+    }
+    catch (err) {
+        return false;
+    }
     
 }
 
 async function updateRate(id, newRate) {
+        if (!session) {
+        return false;
+    }
+    try {
+        const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET rate = ? WHERE id = ?", [newRate, id]);
+        return res.affectedRows === 1;
+    }
+    catch (err) {
+        return false;
+    }
     
 }
 
-export { initializeUser, findUser };
+export { initializeUser, findUser, updateWeight, updateHeight, updateDOB, updateGender, updateActivityLevel, updateRate };
