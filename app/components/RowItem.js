@@ -9,6 +9,17 @@ const RowItem = ({userId, name, value}) => {
     const handleValChange = (e) => {
         setNewVal(e.target.value);
     }
+    const getUnits = (name) => {
+        switch (name) {
+            case "Weight":
+                return "lbs";
+            case "Height":
+                return "nothign";
+            default:
+                return "";
+        };
+    };
+    const displayUnits = getUnits(name);
     const handleClick = async () => {
         setEditing(currentVal => !currentVal);
         if (editing) {
@@ -43,22 +54,31 @@ const RowItem = ({userId, name, value}) => {
         borderRadius: "10px",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "left",
         alignItems: "center",
-        width: "fit-content",
+        minWidth: "fit-content",
+        width: "30%",
     };
     const nameStyle = {
         marginLeft: "10px",
         marginRight: "10px",
+    };
+    const buttonStyle = {
+        marginLeft: "10px",
+        marginRight: "10px",
+        marginLeft: "auto",
     };
 
     return (
         <div style={bigContainer}>
             <div style={containerStyle}>
                 <h3 style={nameStyle}>{name}</h3>
-                {editing === true ? <input value={newVal} onChange={handleValChange}/> : <p style={nameStyle}>{val == null ? "Not set yet!" : val}</p>}
-                <button onClick={handleClick} style={nameStyle}>{editing === true ? "Update" : "Edit"}</button>
-                {editing && <button onClick={() => {setEditing(false); setNewVal(val);}} style={{...nameStyle, marginLeft: "0px",}}>Cancel</button>}
+                {editing === true ? <input value={newVal} onChange={handleValChange}/> : <p style={nameStyle}>{val == null ? "Not set yet!" : val}{displayUnits === "" ? "" : ` ${displayUnits}`}</p>}
+                <div style={buttonStyle}>
+                    <button onClick={handleClick} style={nameStyle}>{editing === true ? "Update" : "Edit"}</button>
+                    {editing && <button onClick={() => {setEditing(false); setNewVal(val);}} style={{...buttonStyle, marginLeft: "0px",}}>Cancel</button>}
+                </div>
+                
             </div>
         </div>
     )

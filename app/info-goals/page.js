@@ -27,6 +27,12 @@ export default async function InfoGoals() {
         <div className={styles["goals-container"]}>
             Yessir, hey {session.user.name}!
             <RowItem userId={id} name="Weight" value={weight}/>
+            <RowItem userId={id} name="Height" value={height}/>
+            <RowItem userId={id} name="Date of Birth" value={dob}/>
+            <RowItem userId={id} name="Gender" value={gender}/>
+            <RowItem userId={id} name="Activity Level" value={activity_level}/>
+            <RowItem userId={id} name="Height" value={height}/>
+
         </div>
     )
 }
