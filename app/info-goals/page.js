@@ -32,6 +32,7 @@ export default async function InfoGoals() {
             <RowItem userId={id} name="Gender" value={gender}/>
             <RowItem userId={id} name="Activity Level" value={activity_level}/>
             <RowItem userId={id} name="Height" value={height}/>
+            This is a nonsense addition
 
         </div>
     )
