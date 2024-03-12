@@ -1,6 +1,7 @@
 "use server";
 import mysql from "mysql2";
 import { getServerSession } from "next-auth";
+import { revalidatePath } from "next/cache";
 
 const session = await getServerSession();
 
@@ -77,6 +78,22 @@ async function updateWeight(id, newWeight) {
     }
     try {
         const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET weight = ? WHERE id = ?", [newWeight, id]);
+        revalidatePath("/info-goals");
+        return res.affectedRows === 1;
+    }
+    catch (err) {
+        return false;
+    }
+
+}
+
+async function updateGoalWeight(id, newWeight) {
+    if (!session) {
+        return false;
+    }
+    try {
+        const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET goal_weight = ? WHERE id = ?", [newWeight, id]);
+        revalidatePath("/info-goals");
         return res.affectedRows === 1;
     }
     catch (err) {
@@ -91,6 +108,7 @@ async function updateHeight(id, newHeight) {
     }
     try {
         const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET height = ? WHERE id = ?", [newHeight, id]);
+        revalidatePath("/info-goals");
         return res.affectedRows === 1;
     }
     catch (err) {
@@ -105,6 +123,7 @@ async function updateDOB(id, newDOB) {
     }
     try {
         const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET dob = ? WHERE id = ?", [newDOB, id]);
+        revalidatePath("/info-goals");
         return res.affectedRows === 1;
     }
     catch (err) {
@@ -119,6 +138,7 @@ async function updateGender(id, newGender) {
     }
     try {
         const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET gender = ? WHERE id = ?", [newGender, id]);
+        revalidatePath("/info-goals");
         return res.affectedRows === 1;
     }
     catch (err) {
@@ -133,11 +153,15 @@ async function updateActivityLevel(id, newActivityLevel) {
     }
     try {
         const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET activity_level = ? WHERE id = ?", [newActivityLevel, id]);
+        revalidatePath("/info-goals");
         return res.affectedRows === 1;
+        
+
     }
     catch (err) {
         return false;
     }
+    
     
 }
 
@@ -147,6 +171,7 @@ async function updateRate(id, newRate) {
     }
     try {
         const [res] = await pool.query("UPDATE joshy_fitness_tracker_user SET rate = ? WHERE id = ?", [newRate, id]);
+        revalidatePath("/info-goals");
         return res.affectedRows === 1;
     }
     catch (err) {
@@ -155,4 +180,4 @@ async function updateRate(id, newRate) {
     
 }
 
-export { initializeUser, findUser, updateWeight, updateHeight, updateDOB, updateGender, updateActivityLevel, updateRate };
+export { initializeUser, findUser, updateWeight, updateHeight, updateDOB, updateGender, updateActivityLevel, updateRate, updateGoalWeight };
