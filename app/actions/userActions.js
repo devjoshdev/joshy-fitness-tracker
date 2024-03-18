@@ -3,7 +3,6 @@ import mysql from "mysql2";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 
-const session = await getServerSession();
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -28,6 +27,7 @@ function getCurrentDate() {
 }
 
 async function initializeUser(email) {
+    const session = await getServerSession();
     if (!session) {
         return null;
     }
@@ -53,6 +53,7 @@ async function initializeUser(email) {
 }
 
 async function findUser(email) {
+    const session = await getServerSession();
     console.log("find user email is", email);
     if (!session) {
         return null;
@@ -73,6 +74,7 @@ async function findUser(email) {
 }
 
 async function updateWeight(id, newWeight) {
+    const session = await getServerSession();
     if (!session) {
         return false;
     }
@@ -88,6 +90,7 @@ async function updateWeight(id, newWeight) {
 }
 
 async function updateGoalWeight(id, newWeight) {
+    const session = await getServerSession();
     if (!session) {
         return false;
     }
@@ -103,6 +106,7 @@ async function updateGoalWeight(id, newWeight) {
 }
 
 async function updateHeight(id, newHeight) {
+        const session = await getServerSession();
         if (!session) {
         return false;
     }
@@ -118,6 +122,7 @@ async function updateHeight(id, newHeight) {
 }
 
 async function updateDOB(id, newDOB) {
+        const session = await getServerSession();
         if (!session) {
         return false;
     }
@@ -133,6 +138,7 @@ async function updateDOB(id, newDOB) {
 }
 
 async function updateGender(id, newGender) {
+        const session = await getServerSession();
         if (!session) {
         return false;
     }
@@ -148,6 +154,7 @@ async function updateGender(id, newGender) {
 }
 
 async function updateActivityLevel(id, newActivityLevel) {
+        const session = await getServerSession();
         if (!session) {
         return false;
     }
@@ -166,6 +173,7 @@ async function updateActivityLevel(id, newActivityLevel) {
 }
 
 async function updateRate(id, newRate) {
+        const session = await getServerSession();
         if (!session) {
         return false;
     }
