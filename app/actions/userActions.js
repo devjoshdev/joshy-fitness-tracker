@@ -31,7 +31,7 @@ async function initializeUser(email) {
     if (!session) {
         return null;
     }
-    console.log("init user email is", email);
+    
     try {
         const [res] = await pool.query("INSERT INTO joshy_fitness_tracker_user (email, date_registered) VALUES (?, ?)", [email, getCurrentDate()]);
         if (res.affectedRows !== 1) {
@@ -39,36 +39,36 @@ async function initializeUser(email) {
         }
         const [rows, fields] = await pool.query("SELECT * FROM joshy_fitness_tracker_user WHERE email = ?", [email]);
         if (rows.length > 0) {
-            console.log('User found:', rows[0]);
+            
             return rows[0];
         } else {
-            console.log('No user found with the given email.');
+            
             return null;
         }
     }
     catch (err) {
-        console.log(err);
+        
         return null;
     }
 }
 
 async function findUser(email) {
     const session = await getServerSession();
-    console.log("find user email is", email);
+    
     if (!session) {
         return null;
     }
     try {
         const [rows, fields] = await pool.query("SELECT * FROM joshy_fitness_tracker_user WHERE email = ?", [email]);
         if (rows.length > 0) {
-            console.log('User found:', rows[0]);
+            
             return rows[0];
         } else {
-            console.log('No user found with the given email.');
+            
             return null;
         }
     } catch (error) {
-        console.log('Error occurred during user search:', error);
+        
         return null;
     }
 }
