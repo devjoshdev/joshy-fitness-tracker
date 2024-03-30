@@ -74,11 +74,11 @@ export default async function FoodDay(props) {
                 <br/>
                 <button type="submit" style={buttonStyle}>Go to Date</button>
             </form>
-            <MealList meal="Breakfast" foods={breakfastFoods}/>
-            <MealList meal="Lunch" foods={lunchFoods}/>
-            <MealList meal="Dinner" foods={dinnerFoods}/>
-            <MealList meal="Dessert" foods={dessertFoods}/>
-            <MealList meal="Snacks" foods={snackFoods}/>
+            <MealList meal="Breakfast" foods={breakfastFoods} date={todayDateString} userId={registeredUser.id}/>
+            <MealList meal="Lunch" foods={lunchFoods} date={todayDateString} userId={registeredUser.id}/>
+            <MealList meal="Dinner" foods={dinnerFoods} date={todayDateString} userId={registeredUser.id}/>
+            <MealList meal="Dessert" foods={dessertFoods} date={todayDateString} userId={registeredUser.id}/>
+            <MealList meal="Snack" foods={snackFoods} date={todayDateString} userId={registeredUser.id}/>
         </div>
     )
 }
