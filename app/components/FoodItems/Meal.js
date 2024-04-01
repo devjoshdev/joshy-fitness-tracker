@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import DeleteFoodModal from "./DeleteFoodModal";
+import { updateFood } from "@/app/actions/foodActions";
 
 const Meal = (props) => {
     const mealName = props.mealName;
@@ -34,14 +35,43 @@ const Meal = (props) => {
         marginLeft: "5px",
         textDecoration: "underline",
     }
+    const inputStyle = {
+        marginTop: "15px",
+        maxWidth: "100px",
+        height: "fit-content",
+
+    }
+    const handleMealNameChange = (e) => {
+        setEditedMealName(e.target.value);
+    }
+    const handleCaloriesChange = (e) => {
+        setEditedCalories(e.target.value);
+    }
+    const handleCancel = () => {
+        setEditedMealName(mealName);
+        setEditedCalories(calories);
+        setIsEditing(false);
+    }
+    const handleUpdate = async () => {
+        const res = await updateFood(foodId, editedMealName, editedCalories, `/foods/day?date=${date}`);
+        if (!res) {
+            // handle error here
+        }
+        setIsEditing(false);
+    }
     const [toggleModal, setToggleModal] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedMealName, setEditedMealName] = useState(mealName);
+    const [editedCalories, setEditedCalories] = useState(calories);
     return (
         <div style={mealStyle}>
-            <p>{mealName}</p>
+            {isEditing ? <input style={inputStyle} value={editedMealName} onChange={handleMealNameChange}/> : <p>{mealName}</p>}
             <p>--------</p>
-            <p>{calories}</p>
-            <p style={buttonStyle1}>Edit</p>
-            <p style={buttonStyle2} onClick={() => setToggleModal(true)}>Delete</p>
+            {isEditing ? <input style={inputStyle} value={editedCalories} onChange={handleCaloriesChange}/> : <p>{calories}</p>}
+            {!isEditing && <p style={buttonStyle1} onClick={() => setIsEditing(true)}>Edit</p>}
+            {!isEditing && <p style={buttonStyle2} onClick={() => setToggleModal(true)}>Delete</p>}
+            {isEditing && <p style={buttonStyle1} onClick={handleUpdate}>Update</p>}
+            {isEditing && <p style={buttonStyle2} onClick={handleCancel}>Cancel</p>}
             {toggleModal && <DeleteFoodModal closeModal={() => setToggleModal(false)} id={foodId} date={date}/>}
         </div>
     )
