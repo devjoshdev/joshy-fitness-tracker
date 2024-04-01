@@ -9,13 +9,15 @@ const AddFoodModal = (props) => {
     const mealName = props.mealName.toLowerCase();
     const addfoodModalContainer = {
         position: "fixed",
-        height: "2000%",
-        width: "1500%",
+        height: "100%",
+        width: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
         zIndex: "2",
+        top: "0",
+        left: "0",
     }
     const foodModalStyle = {
         position: "fixed",
