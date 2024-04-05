@@ -99,7 +99,7 @@ export default async function FoodDay(props) {
                 <br/>
                 <button type="submit" style={buttonStyle}>Go to Date</button>
             </form>
-            {targetCalories != null && <h3>You've consumed {dailyTotalCalories} out of {targetCalories} calories for this day</h3>}
+            {targetCalories != null ? <h3>You've consumed {dailyTotalCalories} out of {targetCalories} calories for this day</h3> : <h3>Head to <a href="/info-goals" style={{color: "white",}}>info-goals</a> to set a daily calorie target</h3>}
             <MealList meal="Breakfast" foods={breakfastFoods} date={todayDateString} userId={registeredUser.id}/>
             <MealList meal="Lunch" foods={lunchFoods} date={todayDateString} userId={registeredUser.id}/>
             <MealList meal="Dinner" foods={dinnerFoods} date={todayDateString} userId={registeredUser.id}/>
