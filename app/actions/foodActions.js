@@ -64,6 +64,10 @@ async function updateFood(id, foodName, calories, page) {
 }
 
 async function getFoodsForDay(day, userId) {
+    const session = await getServerSession();
+    if (!session) {
+        return false;
+    }
     const grabFoodsQuery = "SELECT * FROM joshy_fitness_tracker_food WHERE date = ? AND user_id = ?";
     try {
         const [rows] = await pool.query(grabFoodsQuery, [day, userId]);
