@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { findUser, initializeUser } from "@/app/actions/userActions";
+import WorkoutList from "@/app/components/WorkoutItems/WorkoutList";
 
 export default async function WorkoutDay(props) {
     const workoutDayContainer = {
@@ -36,6 +37,7 @@ export default async function WorkoutDay(props) {
         }
     }
     const { id, email, date_registered, weight, height, dob, gender, activity_level, rate, goal_weight} = registeredUser;
+    const workouts = null; // TODO: grab workouts
 
     const workoutDayPageContainer = {
         marginTop: "120px",
@@ -51,7 +53,6 @@ export default async function WorkoutDay(props) {
         cursor: "pointer",
         padding: "5px 5px",
         width: "125px",
-
         backgroundColor: "black",
         color: "white",
         border: "none",
@@ -68,6 +69,7 @@ export default async function WorkoutDay(props) {
                 <br/>
                 <button type="submit" style={buttonStyle}>Go to Date</button>
             </form>
+            <WorkoutList date={todayDateString} workouts={workouts}/>
             {/* TODO: Create the magic aquí */}
         </div>
     )
